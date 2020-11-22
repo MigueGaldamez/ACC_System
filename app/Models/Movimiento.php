@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cuentas extends Model
+class Movimiento extends Model
 {
-    use HasFactory;
-    protected $table = 'cuentas';
+    protected $table = 'movimientos';
+    protected $primaryKey = 'idMovimiento';
     public function detalles()
     {
             return $this->hasMany(Detalle::class);
     }
 }
+
