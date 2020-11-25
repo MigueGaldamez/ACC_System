@@ -28,15 +28,44 @@
             <h2><b>Generar Balance de Comprobacion</b></h2>
             <h6> Seleccione el mes que desea generar el Balance de comprobacion</h6>
             <div class="input-group col-md-6 mb-3">
-                <input class="form-control" type="month" name="debeMovimiento" id="debeMovimiento"> &nbsp;&nbsp;
-                <button type="submit" class="btn btn-primary">Generar</button>
+                <form action="{{route('balance')}}" method="POST">
+                    @csrf
+                    <input class="form-control" type="month" name="fechafiltro" id="fechafiltro"> &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary">Generar</button>
+                </form>
             </div>
-          
-        </div>
         <div class="container">
-            <h4><b>Balance de Comprobacion de: </b> Noviembre 2020  </h4>
+            <h4><b>Balance de Comprobacion de: </b> {{date("M",strtotime($mes))}}  </h4>
         </div>
 
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Cuenta</th>
+                        <th scope="col">debe</th>
+                        <th scope="col">haber</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $item)
+                    <tr>
+                        <td>{{$item->NombreCuenta}}</td>
+                        @if ($item->debe>= $item->haber)
+                        <td>{{$item->debe-$item->haber }}</td>
+                        <td>-</td>
+                        @endif
+                        @if ($item->haber>= $item->debe)
+                        <td>-</td>
+                        <td>{{$item->haber- $item->debe }}</td>
+                        @endif
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>            
+        </div>
+   
 
       
 </x-app-layout>

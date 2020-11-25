@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CuentasController;
+use App\Http\Controllers\EmpleadosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +21,9 @@ Route::get('/', function () {
 Route::get('/cuentas/balance', function () {
     return view('cuentas.balance');
 });
-Route::get('/cuentas/salario', function () {
-    return view('cuentas.costeoempleado');
-});
-Route::get('/cuentas/empleados', function () {
-    return view('cuentas.empleado');
-});
+
+Route::get('/cuentas/salario', 'App\Http\Controllers\EmpleadosController@calcularsalario');
+
 Route::get('/cuentas/costeo', function () {
     return view('cuentas.costeo');
 });
@@ -42,9 +40,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::post('cuentas/action', 'App\Http\Controllers\CuentasController@action')->name('cuentas.action');
+Route::post('cuentas/balance', [CuentasController::class,'balance'])->name('balance');
+Route::get('cuentas/balance', [CuentasController::class,'balance'])->name('balance');
+
+Route::post('cuentas/salario', [EmpleadosController::class,'calcularsalario'])->name('salario');
+Route::get('cuentas/salario', [EmpleadosController::class,'calcularsalario'])->name('salario');
 
 Route::post('cuentas/prueba', 'App\Http\Controllers\CuentasController@prueba')->name('cuentas.prueba');
-//actualizar algo
 
 Route::post('cuentas/movimiento', 'App\Http\Controllers\CuentasController@guardarMovimiento')->name('cuentas.guardarMovimiento');
 

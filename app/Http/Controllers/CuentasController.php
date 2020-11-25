@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuentas;
+use App\Models\Movimiento;
+use App\Models\Detalle;
 use Dotenv\Repository\RepositoryInterface;
 use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
@@ -17,6 +19,21 @@ class CuentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function balance(Request $request)
+    {
+        $mes = $request->fechafiltro;
+        $fecha=date("n", strtotime($request->fechafiltro));
+        $data = Detalle::groupBy('idCuenta')->addSelect(DB::raw('idCuenta ,sum(debeCuenta) as debe,sum(haberCuenta) as haber'))->whereHas('movimiento', function($query) use ($fecha)
+        {
+            $query->whereMonth("fechaMovimiento","=",$fecha); 
+        })->get();
+        return view('cuentas.balance',compact('data','mes'));
+        
+        
+/*         DB::connection()->enableQueryLog();
+        $queries = DB::getQueryLog();
+        return  $queries;   */      
+    }
     public function index()
     {
         //

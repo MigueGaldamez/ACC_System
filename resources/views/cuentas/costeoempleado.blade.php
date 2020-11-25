@@ -14,28 +14,41 @@
                 {{ session('status') }}
             </div>
         @endif
-
+ 
 
 
         @if(Session::has('Mensaje')){{
           Session::get('Mensaje')
         }}
         @endif
-
+     
       
         <div class="container">
             <br>
             <h2><b>Calcular Salario real de empleado</b></h2>
             <h6> Seleccione el empleado</h6>
-            <div class="input-group col-md-6 mb-3">
-                <input class="form-control" type="month" name="debeMovimiento" id="debeMovimiento"> &nbsp;&nbsp;
-                <button type="submit" class="btn btn-primary">Generar</button>
-            </div>
-          
+               <div class="input-group col-md-6 mb-3">
+                    <form action="{{route('salario')}}" method="POST">
+                                @csrf   
+                        <select class="form-control" name="idempleado" id="idempleado">
+                            @foreach ($empleados as $empleado)     
+                                <option value="{{$empleado->id}}" >{{$empleado->Nombres}}, {{$empleado->Apellidos}} </option>
+                            @endforeach
+                        </select>
+                        
+
+                        <br>
+
+                        <button type="submit" class="btn btn-primary">Cargar datos</button>
+                    </form>
+                </div>
+                    
         </div>
         <div class="container">
-            <h4><b>Balance de Comprobacion de: </b> Noviembre 2020  </h4>
+            <h6><b>calculo de salario real de : </b> {{$data->Nombres}} {{$data->Apellidos}}  </h6>
         </div>
+
+
 
 
       

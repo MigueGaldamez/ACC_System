@@ -92,7 +92,7 @@
         idCodigoCuenta = $('#idCodigoCuenta option:selected').val();
           
         $.ajax({
-          url: "/laravel/SIC/Sistema_Contable/public/cuentas/prueba",
+          url: "/cuentas/prueba",
           type:"POST",
           data:{
             "_token": "{{ csrf_token() }}",

@@ -16,7 +16,7 @@ class EmpleadosController extends Controller
     public function index()
     {
         //
-        $datos['empleados']=  Empleados::paginate(500)->where('clase',0);
+        $datos['empleados']=  Empleados::paginate(500);
         return view('empleados.index',$datos);
     }
 
@@ -30,6 +30,18 @@ class EmpleadosController extends Controller
         //
         return view('empleados.create');
     }
+    public function calcularsalario(Request $request)
+    {
+        //
+        $mes = $request->idempleado;
+  
+        $data = Empleados::where('id','=',$mes)->get();   
+        $data = $data[0];
+        $datos['empleados']=  Empleados::paginate(500)->where('SalarioRealDia',null);
+        return view('cuentas.costeoempleado',$datos,compact('data','mes'));
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
