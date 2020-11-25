@@ -1,7 +1,8 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Generar Balance de comprobacion') }}
+            {{ __('Registro auxiliar') }}
         </h2>
     </x-slot>
 
@@ -25,37 +26,58 @@
       
         <div class="container">
             <br>
-            <h2><b>Generar Balance de Comprobacion</b></h2>
-            <h6> Seleccione el mes que desea generar el Balance de comprobacion</h6>
-            <div class="input-group col-md-6 mb-3">
-                <form action="{{route('balance')}}" method="POST">
+            <h2><b>Registro auxiliar</b></h2>
+            <div class="input-group col-md-12 mb-12">
+                <form action="{{route('auxiliar.auxiliar')}}" method="POST">
                     @csrf
-                    <input class="form-control" type="month" name="fechafiltro"  value="{{$mes}}" id="fechafiltro"> &nbsp;&nbsp;
+                    <div class="form-group col-md-12">
+                        <label for="cuenta">cuenta</label>
+                        <select class="custom-select mr-sm-2" id="cuenta" name="cuenta">
+                            <option selected>Seleccione</option>
+                            @foreach ($cuentas as $item)
+                            @if ($cuenta==$item->id)
+                                <option value="{{$item->id}}" selected>{{$item->NombreCuenta}}</option>
+                            @else
+                                <option value="{{$item->id}}" >{{$item->NombreCuenta}}</option>
+                            @endif
+    
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="cuenta">fecha</label>
+                    <input class="form-control" type="month" name="fechafiltro" value="{{$mes}}"  id="fechafiltro"> 
+                    </div>
                     <button type="submit" class="btn btn-primary">Generar</button>
                 </form>
             </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Cuenta</th>
+                        <th scope="col">fecha movimiento</th>
                         <th scope="col">debe</th>
                         <th scope="col">haber</th>
-                        
-                        
+                        <th scope="col">concepto</th>
                     </tr>
                 </thead>
                 <tbody>
+               
                     @foreach ($data as $item)
                     <tr>
-                        <td>{{$item->cuentas->NombreCuenta}}</td>
-                        @if ($item->debe>= $item->haber)
-                        <td>{{$item->debe-$item->haber }}</td>
+                        
+
+                    </tr>
+                    <tr>
+                        <td>{{$item->movimiento->fechaMovimiento }}</td>
+                        @if ($item->debeCuenta>= $item->haberCuenta)
+                        <td>{{$item->debeCuenta-$item->habeCuenta }}</td>
                         <td>-</td>
                         @endif
-                        @if ($item->haber>= $item->debe)
+                        @if ($item->haberCuenta>= $item->debeCuenta)
                         <td>-</td>
-                        <td>{{$item->haber- $item->debe }}</td>
+                        <td>{{$item->haberCuenta- $item->debeCuenta }}</td>
                         @endif
+                        <td>{{$item->concepto }}</td>
                     </tr>
                     @endforeach
                     <tr>
@@ -65,10 +87,10 @@
                             $sumaHaber=0;
                             foreach ($data as $item) 
                             {
-                                $sumaDebe= $sumaDebe+$item->debe;
-                                $sumaHaber= $sumaHaber+$item->haber;
+                                $sumaDebe= $sumaDebe+$item->debeCuenta;
+                                $sumaHaber= $sumaHaber+$item->haberCuenta;
                             }
-                            
+                       
                         ?>
                         @if ($sumaDebe>= $sumaHaber)
                         <td>{{$sumaDebe-$sumaHaber }}</td>
@@ -78,15 +100,13 @@
                         <td>-</td>
                         <td>{{$sumaHaber- $sumaDebe }}</td>
                         @endif
-
+                        <td>-</td>
                     </tr>
-
                 </tbody>
             </table>            
         </div>
         <div class="container">
-            <h4><b>Balance de Comprobacion de: </b> {{date("M",strtotime($mes))}}  </h4>
-            
+            <h4><b>Registro auxiliar: </b> {{date("M",strtotime($mes))}}</h4>
         </div>
 
  {{--
@@ -96,4 +116,3 @@
         --}}
       
 </x-app-layout>
-

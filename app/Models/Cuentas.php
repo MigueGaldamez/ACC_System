@@ -9,6 +9,7 @@ class Cuentas extends Model
 {
     use HasFactory;
     protected $table = 'cuentas';
+    protected $primaryKey = 'id';
     public function detalles()
     {
             return $this->hasMany(Detalle::class);

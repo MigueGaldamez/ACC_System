@@ -29,8 +29,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::post('cuentas/action', 'App\Http\Controllers\CuentasController@action')->name('cuentas.action');
+
+
+Route::post('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
+Route::get('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
+
+
 Route::post('cuentas/balance', [CuentasController::class,'balance'])->name('balance');
 Route::get('cuentas/balance', [CuentasController::class,'balance'])->name('balance');
+
+
+
 Route::post('cuentas/prueba', 'App\Http\Controllers\CuentasController@prueba')->name('cuentas.prueba');
 Route::post('cuentas/movimiento', 'App\Http\Controllers\CuentasController@guardarMovimiento')->name('cuentas.guardarMovimiento');
 
