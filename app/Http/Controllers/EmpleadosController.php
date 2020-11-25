@@ -35,8 +35,8 @@ class EmpleadosController extends Controller
         //
         $mes = $request->idempleado;
   
-        $data = Empleados::where('id','=',$mes)->get();   
-        $data = $data[0];
+        $data = Empleados::where('id','=',$mes)->get()->first();   
+        //$data = $data[0];
         $datos['empleados']=  Empleados::paginate(500)->where('SalarioRealDia',null);
         return view('cuentas.costeoempleado',$datos,compact('data','mes'));
     }

@@ -30,13 +30,15 @@
             <div class="input-group col-md-6 mb-3">
                 <form action="{{route('balance')}}" method="POST">
                     @csrf
-                    <input class="form-control" type="month" name="fechafiltro" id="fechafiltro"> &nbsp;&nbsp;
+                    <input class="form-control" type="month" name="fechafiltro"  value="{{$mes}}" id="fechafiltro"> &nbsp;&nbsp;
                     <button type="submit" class="btn btn-primary">Generar</button>
                 </form>
             </div>
-        <div class="container">
+         <div class="container">
             <h4><b>Balance de Comprobacion de: </b> {{date("M",strtotime($mes))}}  </h4>
+            
         </div>
+
 
             <table class="table table-hover">
                 <thead>
@@ -62,11 +64,32 @@
                         @endif
                     </tr>
                     @endforeach
+                    <tr>
+                        <td>Total:</td>
+                        <?php
+                            $sumaDebe=0;
+                            $sumaHaber=0;
+                            foreach ($data as $item) 
+                            {
+                                $sumaDebe= $sumaDebe+$item->debe;
+                                $sumaHaber= $sumaHaber+$item->haber;
+                            }
+                            
+                        ?>
+                        @if ($sumaDebe>= $sumaHaber)
+                        <td>{{$sumaDebe-$sumaHaber }}</td>
+                        <td>-</td>
+                        @endif
+                        @if ($sumaHaber>= $sumaDebe)
+                        <td>-</td>
+                        <td>{{$sumaHaber- $sumaDebe }}</td>
+                        @endif
+
+                    </tr>
+
                 </tbody>
             </table>            
         </div>
-   
 
-      
 </x-app-layout>
 

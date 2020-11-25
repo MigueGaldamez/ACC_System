@@ -45,7 +45,10 @@
                     
         </div>
         <div class="container">
-            <h6><b>calculo de salario real de : </b> {{$data->Nombres}} {{$data->Apellidos}}  </h6>
+        
+            <h5><b>calculo de salario real de : </b> {{isset($data->Nombres)?$data->Nombres:''}} {{isset($data->Apellidos)?$data->Apellidos:''}}</h5>
+
+
         </div>
 
 
