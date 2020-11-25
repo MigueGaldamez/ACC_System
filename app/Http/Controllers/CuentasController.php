@@ -28,7 +28,7 @@ class CuentasController extends Controller
         $idmov= DB::table('movimientos')
        ->max('idMovimiento');
 
-        $datos['cuentas']=  Cuentas::paginate(5);
+        $datos['cuentas']=  Cuentas::paginate(500)->where('clase',0);
         return view('cuentas.index',$datos,compact('data'))->with('debe', $debe)->with('haber', $haber)->with('idmov',$idmov);
         
         

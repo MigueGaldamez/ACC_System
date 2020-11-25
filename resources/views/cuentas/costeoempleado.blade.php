@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Generar Balance de comprobacion') }}
+            {{ __('Costeo') }}
         </h2>
     </x-slot>
 
@@ -25,8 +25,8 @@
       
         <div class="container">
             <br>
-            <h2><b>Generar Balance de Comprobacion</b></h2>
-            <h6> Seleccione el mes que desea generar el Balance de comprobacion</h6>
+            <h2><b>Calcular Salario real de empleado</b></h2>
+            <h6> Seleccione el empleado</h6>
             <div class="input-group col-md-6 mb-3">
                 <input class="form-control" type="month" name="debeMovimiento" id="debeMovimiento"> &nbsp;&nbsp;
                 <button type="submit" class="btn btn-primary">Generar</button>

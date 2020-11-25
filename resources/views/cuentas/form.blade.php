@@ -1,5 +1,4 @@
 
-    
     <label for="CidogoCuenta">{{'CodigoCuenta'}}</label>
     <input class="form-control" type="text" name="CodigoCuenta" id="CodigoCuenta" value="{{ isset($cuenta->CodigoCuenta)?$cuenta->CodigoCuenta:''}}">
 

@@ -24,8 +24,8 @@
 
         <div class="container">
         <br>
-        <h2><b>Empresa:</b> Sistemas SopitaMaruchanJS</h2>
-        <h4><b>Movi. #: {{$idmov}}</b></h4>
+        <h2><b>Empresa:</b> Sistemas Luxe development.</h2>
+        <h4><b>Movimiento. #: {{$idmov}}</b></h4>
         <div class="form-inline">
           <div class="form-group">
             <h6><b>Fecha:</b></h6> 
