@@ -22,12 +22,12 @@
                     </x-jet-nav-link>
                 </div>
                   <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-nav-link href="{{ route('balance') }}" :active="request()->routeIs('balance')">
                         {{ __('Balance de Comprobacion') }}
                     </x-jet-nav-link>
                 </div>
                   <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-jet-nav-link href="{{ route('auxiliar.auxiliar') }}" :active="request()->routeIs('auxiliar.auxiliar')">
                         {{ __('Registros Auxiliares') }}
                     </x-jet-nav-link>
                 </div>

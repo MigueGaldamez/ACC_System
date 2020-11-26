@@ -24,6 +24,10 @@ Route::get('/cuentas/balance', function () {
 
 Route::get('/cuentas/salario', 'App\Http\Controllers\EmpleadosController@calcularsalario');
 
+Route::post('empleados/costeo', [EmpleadosController::class,'costeo'])->name('costeo');
+Route::get('empleados/costeo', [EmpleadosController::class,'costeo'])->name('costeo');
+
+
 Route::get('/cuentas/costeo', function () {
     return view('cuentas.costeo');
 });

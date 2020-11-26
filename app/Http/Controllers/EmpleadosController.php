@@ -37,8 +37,34 @@ class EmpleadosController extends Controller
   
         $data = Empleados::where('id','=',$mes)->get()->first();   
         //$data = $data[0];
-        $datos['empleados']=  Empleados::paginate(500)->where('SalarioRealDia',null);
+        $datos['empleados']=  Empleados::paginate(500)->where('salarioRealDia',null);
         return view('cuentas.costeoempleado',$datos,compact('data','mes'));
+    }
+    public function costeo(Request $request)
+    {
+        //
+        $datos['empleados']=  Empleados::paginate(500);
+      
+        $id = $request->Codigo;
+        $empleado = Empleados::find($id);
+        $NominalHora = $request->nominalhoraIN;
+        
+        $RealDia = $request->realdiaIN;
+        $RealHora = $request->realhoraIN;
+        $mensaje="Error al Guardar";
+        $complemento ="Ocurrio un error";
+        if($NominalHora!=null && $RealDia!=null && $RealHora!=null)
+        {   
+            $empleado->salarioNominalHora = $NominalHora;
+            $empleado->salarioRealDia = $RealDia;
+            $empleado->salarioRealHora = $RealHora;
+            $empleado->save();
+            $mensaje = "Guardado con exito";
+            $complemento ="exito, salario real calculado";
+        }
+      
+        return redirect('empleados')->with('Mensaje',$mensaje)->with($datos)->with('Complemento',$complemento);
+
     }
 
 

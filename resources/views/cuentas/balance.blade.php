@@ -35,7 +35,7 @@
                 </form>
             </div>
          <div class="container">
-            <h4><b>Balance de Comprobacion de: </b> {{date("M",strtotime($mes))}}  </h4>
+            <h4><b>Balance de Comprobacion desde: </b>el 1 de {{date("M",strtotime($mes))}}  hasta el 31 de {{date("M",strtotime($mes))}}</h4>
             
         </div>
 
@@ -53,7 +53,7 @@
                 <tbody>
                     @foreach ($data as $item)
                     <tr>
-                        <td>{{$item->NombreCuenta}}</td>
+                        <td>{{$item->cuentas->NombreCuenta}}</td>
                         @if ($item->debe>= $item->haber)
                         <td>{{$item->debe-$item->haber }}</td>
                         <td>-</td>
@@ -76,13 +76,17 @@
                             }
                             
                         ?>
-                        @if ($sumaDebe>= $sumaHaber)
+                        @if ($sumaDebe> $sumaHaber)
                         <td>{{$sumaDebe-$sumaHaber }}</td>
                         <td>-</td>
                         @endif
-                        @if ($sumaHaber>= $sumaDebe)
+                        @if ($sumaHaber> $sumaDebe)
                         <td>-</td>
                         <td>{{$sumaHaber- $sumaDebe }}</td>
+                        @endif
+                        @if ($sumaHaber == $sumaDebe)
+                        <td><b>{{$sumaHaber}}</b></td>
+                        <td><b>{{$sumaHaber}}</b></td>
                         @endif
 
                     </tr>

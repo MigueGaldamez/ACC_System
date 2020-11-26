@@ -17,12 +17,23 @@
 
 
 
-        @if(Session::has('Mensaje')){{
-          Session::get('Mensaje')
-        }}
-        @endif
-
+  
+  
+            <div class="bg-white  sm:rounded-lg">
+                @if(Session::has('Mensaje')) <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading"> {{
+         
+                    Session::get('Mensaje')
+                }}!</h4>
+                      {{  Session::get('Complemento')}}
+                    </div>
+                @endif               
+            </div>
+       
         <div class="container">
+        
+       
+
         <br><br>
           <h2><b></b> Empleados Actualmente en el sistema.</h2>
         <h4><b>Cant Empleados. #: </b></h4>
@@ -36,8 +47,8 @@
                   <th scope="col" >Nombres</th>
                   <th scope="col">Apellidos</th>
                   <th scope="col">Correo</th>
-                  <th scope="col">Salario Nominal</th>
-                  <th scope="col">Salario Real</th>
+                  <th scope="col">Salario Nominal Diario</th>
+                  <th scope="col">Salario Real Diario</th>
                   <th scope="col" class="text-center">Acciones</th>
                  
                 </tr>
@@ -49,8 +60,8 @@
                   <td>{{ $row->Nombres }}</td>
                   <td>{{ $row->Apellidos }}</td>
                   <td>{{ $row->Correo }}</td>
-                  <td>{{ $row->salarioNominalDia }}</td>
-                  <td>
+                  <td class="text-center">{{ $row->salarioNominalDia }}</td>
+                  <td class="text-center">
                   
                     {{isset($row->salarioRealDia)?$row->salarioRealDia:'No ha sido calculado'}}
                   
