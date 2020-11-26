@@ -19,6 +19,7 @@ class CuentasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function balance(Request $request)
     {
         $mes = $request->fechafiltro;
@@ -62,6 +63,15 @@ class CuentasController extends Controller
 
         $datos['cuentas']=  Cuentas::paginate(500)->where('clase',0);
         return view('cuentas.index',$datos,compact('data'))->with('debe', $debe)->with('haber', $haber)->with('idmov',$idmov);
+        
+        
+    }
+    public function catalogo()
+    {
+        //
+       
+        $datos['cuentas']=  Cuentas::paginate(500);
+        return view('cuentas.cuentas',$datos);
         
         
     }

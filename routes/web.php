@@ -32,6 +32,8 @@ Route::get('/cuentas/costeo', function () {
     return view('cuentas.costeo');
 });
 
+Route::get('/cuentas/catalogo', 'App\Http\Controllers\CuentasController@catalogo')->name('cuentas.catalogo');
+
 
 
 Route::resource('cuentas', 'App\Http\Controllers\CuentasController');
