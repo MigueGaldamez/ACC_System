@@ -7,6 +7,7 @@
 
         <title>Sistema Contable | SIC115{{-- config('app.name', 'Sistema Contable') --}}</title>
 
+        <link rel="icon" href="{{ asset('css/budget.ico') }}"/>
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 

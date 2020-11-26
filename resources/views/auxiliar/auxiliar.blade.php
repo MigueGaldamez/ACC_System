@@ -27,10 +27,11 @@
         <div class="container">
             <br>
             <h2><b>Registro auxiliar</b></h2>
-            <div class="input-group col-md-12 mb-12">
+         
                 <form action="{{route('auxiliar.auxiliar')}}" method="POST">
                     @csrf
-                    <div class="form-group col-md-12">
+                    <div class="row">
+                    <div class="col-sm">
                         <label for="cuenta">cuenta</label>
                         <select class="custom-select mr-sm-2" id="cuenta" name="cuenta">
                             <option selected>Seleccione</option>
@@ -44,13 +45,18 @@
                         @endforeach
                         </select>
                     </div>
-                    <div class="form-group col-md-12">
+                    <div class="col-sm">
                         <label for="cuenta">fecha</label>
                     <input class="form-control" type="month" name="fechafiltro" value="{{$mes}}"  id="fechafiltro"> 
                     </div>
+                     </div>
+                     <br>
                     <button type="submit" class="btn btn-primary">Generar</button>
                 </form>
-            </div>
+           <br>
+        <div class="container">
+            <h4><b>Detalle de Registro desde el:  </b>1ro de {{date("M",strtotime($mes))}} hasta el 31 de {{date("M",strtotime($mes))}}</h4>
+        </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -100,9 +106,7 @@
                 </tbody>
             </table>            
         </div>
-        <div class="container">
-            <h4><b>Registro auxiliar: </b> {{date("M",strtotime($mes))}}</h4>
-        </div>
+    
 
  {{--
 
