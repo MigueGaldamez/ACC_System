@@ -53,7 +53,7 @@
                 <tbody>
                     @foreach ($data as $item)
                     <tr>
-                        <td>{{$item->NombreCuenta}}</td>
+                        <td>{{$item->cuentas->NombreCuenta}}</td>
                         @if ($item->debe>= $item->haber)
                         <td>{{$item->debe-$item->haber }}</td>
                         <td>-</td>

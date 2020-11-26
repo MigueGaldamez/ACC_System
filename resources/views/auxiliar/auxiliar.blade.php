@@ -92,13 +92,8 @@
                             }
                        
                         ?>
-                        @if ($sumaDebe>= $sumaHaber)
-                        <td>{{$sumaDebe-$sumaHaber }}</td>
-                        <td>-</td>
-                        @endif
-                        @if ($sumaHaber>= $sumaDebe)
-                        <td>-</td>
-                        <td>{{$sumaHaber- $sumaDebe }}</td>
+                        <td>{{$sumaDebe}}</td>
+                        <td>{{$sumaHaber}}</td>
                         @endif
                         <td>-</td>
                     </tr>

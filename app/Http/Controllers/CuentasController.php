@@ -25,7 +25,7 @@ class CuentasController extends Controller
         $fecha=date("n", strtotime($request->fechafiltro));
         $data = Detalle::groupBy('idCuenta')->addSelect(DB::raw('idCuenta ,sum(debeCuenta) as debe,sum(haberCuenta) as haber'))->whereHas('movimiento', function($query) use ($fecha)
         {
-            $query->whereMonth("fechaMovimiento","=",'09'); 
+            $query->whereMonth("fechaMovimiento","=",$fecha); 
         })->get();
         //return $data;
         return view('cuentas.balance',compact('data','mes'));

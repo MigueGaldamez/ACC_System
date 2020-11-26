@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CuentasController;
 use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\HojaTrabajoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,25 @@ Route::post('cuentas/action', 'App\Http\Controllers\CuentasController@action')->
 
 Route::post('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
 Route::get('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
+
+Route::post('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
+Route::get('dashboard/cuentas/auxiliar', [CuentasController::class,'auxiliar'])->name('auxiliar.auxiliar');
+
+Route::get('dashboard/hojatrabajo', [HojaTrabajoController::class,'index'])->name('hoja.index');
+Route::get('dashboard/hojatrabajo/create', [HojaTrabajoController::class,'create'])->name('hoja.create');
+Route::post('dashboard/hojatrabajo/create', [HojaTrabajoController::class,'guardar'])->name('hoja.guardar');
+
+Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/edit', [HojaTrabajoController::class,'edithoja'])->name('hoja.edith');
+Route::put('dashboard/hojatrabajo/{hojatrabajo}/hoja/edit', [HojaTrabajoController::class,'updatehoja'])->name('hoja.updateh');
+Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/delete', [HojaTrabajoController::class,'destroy'])->name('hoja.destroy');
+
+
+Route::get('dashboard/hojatrabajo/{hojatrabajo}/detalle/edit', [HojaTrabajoController::class,'editdetalle'])->name('hoja.edit');
+Route::put('dashboard/hojatrabajo/{hojatrabajo}/detalle/edit', [HojaTrabajoController::class,'updatdetalle'])->name('hoja.update');
+
+Route::get('dashboard/hojatrabajo/{detalle}/edetalle/edit', [HojaTrabajoController::class,'editedetalle'])->name('detalle.editd');
+Route::put('dashboard/hojatrabajo/{detalle}/edetalle/edit', [HojaTrabajoController::class,'updateedetalle'])->name('detalle.updated');
+Route::get('dashboard/hojatrabajo/{detalle}/edetalle/delete', [HojaTrabajoController::class,'edestroy'])->name('detalle.destroy');
 
 
 Route::post('cuentas/balance', [CuentasController::class,'balance'])->name('balance');

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleados extends Model
 {
-    use HasFactory;
+    protected $table = 'empleados';
+    public function hojastrabajos()
+    {
+        return $this->belongsToMany(HojaTrabajo::class,'detalle_hoja_trabajos','empleado_id','hojatrabajo_id');
+    }
 }
