@@ -40,6 +40,9 @@
                 </thead>
                 <tbody>
                   @foreach($empleados as $row)
+                
+                      
+                 
                   <tr>
                     <td class="d-none">{{ $row->id }}</td>
                     <td>{{ $row->Nombres }}</td>
@@ -50,7 +53,8 @@
                       {{isset($row->salarioRealDia)?$row->salarioRealDia:'No ha sido calculado'}}
                     </td>
                     <td>
-                    <input class="form-check-input" type="checkbox" name="empleado[]" value="{{ $row->id }}"  id="inlineCheckbox1">
+                          <input class="form-check-input" type="checkbox" name="empleado[]" value="{{ $row->id }}"  id="inlineCheckbox1">
+                    
 
                     </td>
                   </tr>
@@ -106,7 +110,7 @@
               </tr>
             </tbody>
           </table>
-
+          <a href="{{ route('hoja.index') }}" class="badge badge-info">Regresar</a>
 
  
 </x-app-layout>

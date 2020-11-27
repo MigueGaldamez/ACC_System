@@ -39,6 +39,7 @@ class HojaTrabajoController extends Controller
         $hojatrabajo->factor=$request->factor;
         $hojatrabajo->save();
         return redirect()->route('hoja.index');
+        
     }
     public function editdetalle(HojaTrabajo $hojatrabajo)
     {
@@ -52,6 +53,7 @@ class HojaTrabajoController extends Controller
         $empleados = $request->input('empleado');
         //dd($empleados);
         $hojatrabajo->empleados()->attach($empleados);
+        return redirect()->route('hoja.edit',[$hojatrabajo->id]);
     }
     public function editedetalle(DetalleHojaTrabajo $detalle)
     {
@@ -63,16 +65,28 @@ class HojaTrabajoController extends Controller
         $detalle->actividad=$request->actividad;
         $detalle->horasUtilizadas=$request->horasUtilizadas;
         $detalle->save();
-        return redirect()->route('hoja.index');
+        return redirect()->route('hoja.edit',[$detalle->hojatrabajo_id]);
     }
     public function edestroy(DetalleHojaTrabajo $detalle)
     {
         $detalle->delete();
-        return redirect()->route('hoja.index');
+        return redirect()->route('hoja.edit',[$detalle->hojatrabajo_id]);
     }
     public function destroy(HojaTrabajo $hojatrabajo)
     {
         $hojatrabajo->delete();
         return redirect()->route('hoja.index');
+    }
+    public function end(HojaTrabajo $hojatrabajo)
+    {
+        $hojatrabajo->fechafin=date('Y-m-d');
+        $hojatrabajo->save();
+        return redirect()->route('hoja.index');
+    }
+    public function table(HojaTrabajo $hojatrabajo)
+    {
+        $var =  $hojatrabajo->id;
+        $detalle= DetalleHojaTrabajo::where('hojatrabajo_id', $var)->get();
+        return view('hojatrabajos.table',compact('hojatrabajo','detalle'));
     }
 }

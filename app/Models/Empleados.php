@@ -12,4 +12,8 @@ class Empleados extends Model
     {
         return $this->belongsToMany(HojaTrabajo::class,'detalle_hoja_trabajos','empleado_id','hojatrabajo_id');
     }
+    public function hojadetalle()
+    {
+            return $this->hasMany(DetalleHojaTrabajo::class,'empleado_id','id');
+    }
 }

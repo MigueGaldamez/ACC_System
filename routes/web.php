@@ -60,7 +60,8 @@ Route::post('dashboard/hojatrabajo/create', [HojaTrabajoController::class,'guard
 Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/edit', [HojaTrabajoController::class,'edithoja'])->name('hoja.edith');
 Route::put('dashboard/hojatrabajo/{hojatrabajo}/hoja/edit', [HojaTrabajoController::class,'updatehoja'])->name('hoja.updateh');
 Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/delete', [HojaTrabajoController::class,'destroy'])->name('hoja.destroy');
-
+Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/end', [HojaTrabajoController::class,'end'])->name('hoja.end');
+Route::get('dashboard/hojatrabajo/{hojatrabajo}/hoja/table', [HojaTrabajoController::class,'table'])->name('hoja.table');
 
 Route::get('dashboard/hojatrabajo/{hojatrabajo}/detalle/edit', [HojaTrabajoController::class,'editdetalle'])->name('hoja.edit');
 Route::put('dashboard/hojatrabajo/{hojatrabajo}/detalle/edit', [HojaTrabajoController::class,'updatdetalle'])->name('hoja.update');

@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="factor">Factor de aplicacion</label>
-                    <input id="factor" type="number"  class="form-control" value="{{$hojatrabajo->factor}}" name="factor" placeholder="Factor de aplicacion">
+                    <input id="factor" type="money" min="0.00" max="10000.00" step="0.01"  class="form-control" value="{{$hojatrabajo->factor}}" name="factor" placeholder="Factor de aplicacion">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>

@@ -53,6 +53,13 @@
                     <a href="{{ route('hoja.edit',$row->id) }}" class="badge badge-info">+|- Empleados</a>
                     <a href="{{ route('hoja.edith',$row->id) }}" class="badge badge-info">Editar Hoja</a>
                     <a href="{{ route('hoja.destroy',$row->id) }}" class="badge badge-info">Eliminar</a>
+                    @if ($row->fechafin != NULL)
+                    <a href="{{ route('hoja.table',$row->id) }}" class="badge badge-dark">Ver Tabla</a>
+                    @else
+                    <a href="{{ route('hoja.end',$row->id) }}" class="badge badge-success">Finalizar</a>
+
+                    @endif
+                    
 
 
                   </td>
